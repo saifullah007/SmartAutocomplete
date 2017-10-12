@@ -21,5 +21,8 @@
   "homepage": "https://github.com/saifullah007/SmartAutocomplete#readme",
   "devDependencies": {
     "grunt": "^1.0.1"
+  },
+  "dependencies": {
+    "grunt-contrib-concat": "^1.0.1"
   }
 }
