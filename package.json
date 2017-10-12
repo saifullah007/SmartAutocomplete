@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/saifullah007/SmartAutocomplete/issues"
   },
-  "homepage": "https://github.com/saifullah007/SmartAutocomplete#readme"
+  "homepage": "https://github.com/saifullah007/SmartAutocomplete#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  }
 }
