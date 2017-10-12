@@ -21,10 +21,19 @@ module.exports = function (grunt) {
                 src: ['src/configuration.js','src/dataBuilder.js'],
                 dest: 'dist/smart-autocomplete.js'
             }
+        },
+
+        uglify: {
+            build: {
+                src: 'dist/smart-autocomplete.js',
+                dest:  'dist/smart-autocomplete.min.js'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
 
-    grunt.registerTask('default', ['concat']);
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+
+    grunt.registerTask('default', ['concat', 'uglify']);
 };
