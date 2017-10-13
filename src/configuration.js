@@ -27,9 +27,63 @@ var SmartAutocomplete = (function (scope) {
 
         // var requiredFields = ['data', ''];
 
-        overideDefaultWithOptions(defaults, options);
+        mergeOptions();
+
+        normalizeConfigurationAfterMerge();
+
+        function mergeOptions(){
+
+
+
+            function mergeObjects(source, target){
+                var mergedObject = source || {};
+
+				for (var propertyName in source) {
+					if (target[propertyName] !== undefined && target[propertyName] !== null) {
+
+						if (typeof target[propertyName] !== "object" || 
+								target[propertyName] instanceof Array) {
+							mergedObject[propertyName] = target[propertyName];
+						} else {
+							mergeObjects(source[propertyName], target[propertyName]);
+						}
+					}
+				}
+			
+				/* If data is an object */
+				if (target.data !== undefined && target.data !== null && typeof target.data === "object") {
+					mergedObject.data = target.data;
+				}
+
+				return mergedObject;
+            }
+        };
+
+        function normalizeConfigurationAfterMerge() {
+
+            if (defaults.url !== 'required' && typeof defaults.url !== 'function') {
+                var defaultsUrl = defaults.url;
+                defaults.url = function() {
+                    return defaultsUrl;
+                }
+            }
+
+            if (typeof defaults.listLocation === 'string') {
+                var defaultsListLocation = defaults.listLocation;
+
+                defaults.listLocation = function(data) {
+                    return data[defaultsListLocation];
+                };
+            }
+
+            if (typeof defaults.getValue === 'string') {
+                var defaultsGetValue = defaults.getValue;
+                defaults.getValue = function(element) {
+                    return element[defaultsGetValue];
+                };
+            }
+        }
         
-        function overideDefaultsWithOption(options){};
     };
 
     return scope;
