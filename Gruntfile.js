@@ -28,6 +28,12 @@ module.exports = function (grunt) {
                 src: 'dist/smart-autocomplete.js',
                 dest:  'dist/smart-autocomplete.min.js'
             }
+        },
+
+        qunit: {
+            unit: [
+                'test/unit-test/*.html'
+            ]
         }
     });
 
@@ -35,5 +41,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['concat', 'uglify']);
+    grunt.loadNpmTasks('grunt-contrib-qunit');
+
+    grunt.registerTask('default', ['concat', 'uglify', 'qunit']);
 };
