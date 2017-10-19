@@ -56,6 +56,26 @@ function assertValue (value, objectOne, objectTwo) {
 	}
 }
 
-QUnit.test("A demo test", function (assert) {
-    assert.equal("Test", "Test", "Demo Test")
+QUnit.module("Configuration Test", {
+	beforeEach: function(assert) {
+		console.log("\n");
+		console.log("############### Testing Module Configuration ###############")
+	}
+});
+
+QUnit.test("Test Defualt Configuration", function (assert) {
+    assertValue._assertMethod = assert;
+	assertValue._expected = {
+		data: 'required',
+		url: 'required'
+	}
+
+	var actual = new SmartAutocomplete.Configuration({});
+	
+	assertValue._actual = actual;
+
+	assertValue('data');
+	assertValue('url');
+
+	assert.expect(2);
 });
