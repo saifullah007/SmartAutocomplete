@@ -25,15 +25,19 @@ var SmartAutocomplete = (function (scope) {
             onHideListEvent: function(e) {}
         };
 
+        this.get = function(propertyName) {
+            return defaults[propertyName];
+        }
+
         // var requiredFields = ['data', ''];
 
-        mergeOptions();
+        mergeOptions(options);
 
         normalizeConfigurationAfterMerge();
 
-        function mergeOptions(){
+        function mergeOptions(options){
 
-
+            mergeObjects(defaults, options);
 
             function mergeObjects(source, target){
                 var mergedObject = source || {};
