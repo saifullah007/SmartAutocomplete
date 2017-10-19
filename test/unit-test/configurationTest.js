@@ -56,6 +56,8 @@ function assertValue (value, objectOne, objectTwo) {
 	}
 }
 
+console.log("\n");
+console.log("[Testing] Testing Rebase");
 QUnit.test("A demo test", function (assert) {
     assert.equal("Test", "Test", "Demo Test")
 });
