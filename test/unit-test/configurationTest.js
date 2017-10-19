@@ -56,6 +56,7 @@ function assertValue (value, objectOne, objectTwo) {
 	}
 }
 
+<<<<<<< HEAD
 QUnit.module("Configuration Test", {
 	beforeEach: function(assert) {
 		console.log("\n");
@@ -78,4 +79,8 @@ QUnit.test("Test Defualt Configuration", function (assert) {
 	assertValue('url');
 
 	assert.expect(2);
+=======
+QUnit.test("A demo test", function (assert) {
+    assert.equal("Test", "Test", "Demo Test")
+>>>>>>> 3cfdcc97559cab90a9f42aacbb0e9c31affb3a99
 });
