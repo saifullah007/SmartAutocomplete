@@ -3,14 +3,14 @@
  * Utility method to compare value of fields between actual and extected object.
  * 
  * For 1 argument, @param {String} value represents the field to be compared between 
- * assertValue._expected and assertValue._actual Object
+ * assertValue._expected and assertValue._actual objects.
  * 
  * For 2 argument, @param {String} value, @param {String} objectOne represents the field to be compared
- * between {assertValue._expected.objectOne} and {assertValue._actual.objectOne}
+ * between {assertValue._expected.objectOne} and {assertValue._actual.objectOne} objects.
  * 
  * For 3 argument, @param {String} value, @param {String} objectOne, @param {String} objectTwo 
  * represents the field to be compared between 
- * {assertValue._expected.objectTwo.objectOne} and {assertValue._actual.objectTwo.objectOne}
+ * {assertValue._expected.objectTwo.objectOne} and {assertValue._actual.objectTwo.objectOne} objects.
  * 
  * This function can be further extend following the pattern above.
  * 
