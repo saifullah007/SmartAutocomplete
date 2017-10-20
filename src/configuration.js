@@ -31,6 +31,9 @@ var SmartAutocomplete = (function (scope) {
 
         // var requiredFields = ['data', ''];
 
+        if(!options){
+            options = {};
+        }
         mergeOptions(options);
 
         normalizeConfigurationAfterMerge();
