@@ -74,7 +74,7 @@ QUnit.test("Test Configuration for undefined/no options",function(assert) {
 
 	var actual = new SmartAutocomplete.Configuration();
 
-	assert.ok(actual, "Passed : Configuration created succesfully with defaults");
+	assert.ok(actual, "Passed : Configuration created succesfully for no options");
 
 	assertValue._actual = actual;
 	assertValue('data');
@@ -85,7 +85,7 @@ QUnit.test("Test Configuration for undefined/no options",function(assert) {
 	assert.ok(typeof actual.get("getPaginationQuery") 	=== 'function', "Passed : getPaginationQuery of type function");
 	assert.ok(typeof actual.get("listLocation") 		=== 'function', "Passed : listLocation of type function");
 	assert.ok(typeof actual.get("getValue") 			=== 'function', "Passed : getValue of type function");
-	
+
 	assert.expect(9);
 });
 
