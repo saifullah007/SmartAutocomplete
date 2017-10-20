@@ -1,6 +1,6 @@
 var SmartAutocomplete = (function (scope) {
 
-    scope.DataBuilder = function DataBuilder(options) { 
+    scope.DataProcessor = function DataProcessor(options) { 
         
     }
 })(SmartAutocomplete || {});
