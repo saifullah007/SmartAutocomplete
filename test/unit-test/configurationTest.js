@@ -154,3 +154,38 @@ QUnit.test("Basic Configuration Test", function (assert) {
 	assertValue('paginated');
 
 });
+
+QUnit.test("getValue Test", function(assert) {
+	
+	var options = {
+		getValue: 'name'
+	}
+
+	var testData = {
+			name: ['A', 'B', 'C', 'D', 'E'],
+			name2: ['A', 'B', 'C', 'D'],
+			length: 5
+		};
+
+	var actual = new SmartAutocomplete.Configuration(options);
+
+	assert.ok(testData.name === actual.get('getValue')(testData), 
+	"Passed: fieldName assigned to getValue");
+
+	options = {
+		getValue: function(data) {
+			return data.fruits.dataList;
+		}
+	};
+
+	testData = {
+		fruits: {
+			dataList:['apple', 'orange', 'grapes']
+		}
+	}
+
+	actual = new SmartAutocomplete.Configuration(options);
+
+	assert.ok(testData.fruits.dataList === actual.get('getValue')(testData), 
+	"Passed: function assigned to getValue for complicated data");
+});
