@@ -70,9 +70,7 @@ QUnit.test("Test Defualt Configuration", function (assert) {
 		url: 'required'
 	}
 
-	var actual = new SmartAutocomplete.Configuration({});
-	
-	assertValue._actual = actual;
+	assertValue._actual = new SmartAutocomplete.Configuration({});
 
 	assertValue('data');
 	assertValue('url');
