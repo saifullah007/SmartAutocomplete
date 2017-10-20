@@ -112,3 +112,45 @@ QUnit.test("Test Defualt Configuration", function (assert) {
 	assert.ok(typeof actual.get("getValue") 			=== 'function', "Passed : getValue of type function");
 	assert.expect(8);
 });
+
+QUnit.test("Basic Configuration Test", function (assert) {
+
+	assertValue._assertMethod = assert;
+
+	var options = {
+		data: ['A', 'B', 'C'],
+		maxNoOfContent: 20,
+		paginated: true,
+		paginationQuery: {
+			offset: 0,
+			length: 10
+		},
+		url: function (phrase) {
+			return 'url?'+phrase;
+		},
+		getValue: function (element) {
+			return element;
+		},
+		listLocation: function(data) {
+			return data;
+		},
+		getPaginationQuery: function(prevPaginationQuery){
+			return prevPaginationQuery;
+		}
+	};
+	var actual = new SmartAutocomplete.Configuration(options);
+
+	assertValue._expected = options;
+	assertValue._actual = actual;
+
+	assertValue('data');
+	assertValue('url');
+	assertValue('getValue');
+	assertValue('listLocation');
+	assertValue('getPaginationQuery');
+	assertValue('offset','paginationQuery');
+	assertValue('length','paginationQuery');
+	assertValue('maxNoOfContent');
+	assertValue('paginated');
+
+});
