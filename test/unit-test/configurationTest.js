@@ -67,13 +67,22 @@ QUnit.test("Test Defualt Configuration", function (assert) {
     assertValue._assertMethod = assert;
 	assertValue._expected = {
 		data: 'required',
-		url: 'required'
+		url: 'required',
+		maxNoOfContent: 10,
+		paginated: false
 	}
 
-	assertValue._actual = new SmartAutocomplete.Configuration({});
+	var actual = new SmartAutocomplete.Configuration({});
+
+	assertValue._actual = actual;
 
 	assertValue('data');
 	assertValue('url');
-
-	assert.expect(2);
+	assertValue('maxNoOfContent');
+	assertValue('paginated');
+	assert.ok(typeof actual.get("paginationQuery") 		=== 'object', 	"Passed : paginationQuery of type object");
+	assert.ok(typeof actual.get("getPaginationQuery") 	=== 'function', "Passed : getPaginationQuery of type function");
+	assert.ok(typeof actual.get("listLocation") 		=== 'function', "Passed : listLocation of type function");
+	assert.ok(typeof actual.get("getValue") 			=== 'function', "Passed : getValue of type function");
+	assert.expect(8);
 });
