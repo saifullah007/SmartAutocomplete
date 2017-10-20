@@ -66,6 +66,17 @@ var SmartAutocomplete = (function (scope) {
             }
         };
 
+        mergePaginaionQueryInOptions(options);
+
+        function mergePaginaionQueryInOptions(options){
+            if(!options) return;
+            if(!options.paginationQuery) return;
+
+            for (var key in options.paginationQuery) {
+                defaults.paginationQuery[key] = options.paginationQuery[key];
+            }
+        }
+        
         function normalizeConfigurationAfterMerge() {
 
             if (defaults.url !== 'required' && typeof defaults.url !== 'function') {
