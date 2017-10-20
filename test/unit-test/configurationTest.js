@@ -81,12 +81,10 @@ QUnit.test("Test Configuration for undefined/no options",function(assert) {
 	assertValue('url');
 	assertValue('maxNoOfContent');
 	assertValue('paginated');
-	assert.ok(typeof actual.get("paginationQuery") 		=== 'object', 	"Passed : paginationQuery of type object");
-	assert.ok(typeof actual.get("getPaginationQuery") 	=== 'function', "Passed : getPaginationQuery of type function");
 	assert.ok(typeof actual.get("listLocation") 		=== 'function', "Passed : listLocation of type function");
 	assert.ok(typeof actual.get("getValue") 			=== 'function', "Passed : getValue of type function");
 
-	assert.expect(9);
+	assert.expect(7);
 });
 
 QUnit.test("Test Defualt Configuration", function (assert) {
@@ -106,11 +104,9 @@ QUnit.test("Test Defualt Configuration", function (assert) {
 	assertValue('url');
 	assertValue('maxNoOfContent');
 	assertValue('paginated');
-	assert.ok(typeof actual.get("paginationQuery") 		=== 'object', 	"Passed : paginationQuery of type object");
-	assert.ok(typeof actual.get("getPaginationQuery") 	=== 'function', "Passed : getPaginationQuery of type function");
 	assert.ok(typeof actual.get("listLocation") 		=== 'function', "Passed : listLocation of type function");
 	assert.ok(typeof actual.get("getValue") 			=== 'function', "Passed : getValue of type function");
-	assert.expect(8);
+	assert.expect(6);
 });
 
 QUnit.test("Basic Configuration Test", function (assert) {
@@ -147,9 +143,6 @@ QUnit.test("Basic Configuration Test", function (assert) {
 	assertValue('url');
 	assertValue('getValue');
 	assertValue('listLocation');
-	assertValue('getPaginationQuery');
-	assertValue('offset','paginationQuery');
-	assertValue('length','paginationQuery');
 	assertValue('maxNoOfContent');
 	assertValue('paginated');
 
@@ -188,4 +181,63 @@ QUnit.test("getValue Test", function(assert) {
 
 	assert.ok(testData.fruits.dataList === actual.get('getValue')(testData), 
 	"Passed: function assigned to getValue for complicated data");
+});
+
+QUnit.test("pagination Configuration Test", function(assert) {
+
+	var options = {
+		pagination:{
+			query: {
+				offset: 0,
+				length: 10
+			},
+			next: function (currentPaginationQuery) {
+				return currentPaginationQuery;
+			},
+			prev: function (currentPaginationQuery) {
+				return currentPaginationQuery;
+			}
+		}
+	}
+
+	var actual = new SmartAutocomplete.Configuration(options);
+
+	assertValue._assertMethod = assert;
+	assertValue._expected = options;
+	assertValue._actual = actual;
+
+	assertValue('offset', 'query', 'pagination');
+	assertValue('length', 'query', 'pagination');
+	assert.ok(typeof actual.get('pagination').next === 'function', 
+	"Passed: pagination.next is of type function");
+
+	assert.ok(typeof actual.get('pagination').prev === 'function', 
+	"Passed: pagination.prev is of type function");
+
+	assert.ok(options.pagination.query.offset === actual.get('pagination').next().offset);
+	assert.ok(options.pagination.query.length === actual.get('pagination').next().length);
+	assert.ok(options.pagination.query.offset === actual.get('pagination').prev().offset);
+	assert.ok(options.pagination.query.length === actual.get('pagination').prev().length);
+
+	options.pagination.next = function(currentPaginationQuery){
+		currentPaginationQuery.offset = currentPaginationQuery.offset+currentPaginationQuery.length;
+		return currentPaginationQuery;
+	}
+
+	options.pagination.prev = function(currentPaginationQuery){
+		currentPaginationQuery.offset = currentPaginationQuery.offset-currentPaginationQuery.length;
+		return currentPaginationQuery;
+	}
+
+	actual = new SmartAutocomplete.Configuration(options);
+
+	assert.ok((options.pagination.query.offset+10) === actual.get('pagination').next().offset);
+	assert.ok(options.pagination.query.length === actual.get('pagination').next().length);
+	assert.ok((options.pagination.query.offset-10) === actual.get('pagination').prev().offset);
+	assert.ok(options.pagination.query.length === actual.get('pagination').prev().length);
+
+	// Checking if original pagination query is not modified
+	assert.ok(options.pagination.query.length === SmartAutocomplete.Configuration.currentPaginationQuery.length)
+	assert.ok(options.pagination.query.offset === SmartAutocomplete.Configuration.currentPaginationQuery.offset)
+
 });
