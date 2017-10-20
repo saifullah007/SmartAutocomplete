@@ -56,11 +56,37 @@ function assertValue (value, objectOne, objectTwo) {
 	}
 }
 
-QUnit.module("Configuration Test", {
+/*QUnit.module("Configuration Test", {
 	beforeEach: function(assert) {
 		console.log("\n");
 		console.log("############### Testing Module Configuration ###############")
 	}
+});*/
+
+QUnit.test("Test Configuration for undefined/no options",function(assert) {
+	assertValue._assertMethod = assert;
+	assertValue._expected = {
+		data: 'required',
+		url: 'required',
+		maxNoOfContent: 10,
+		paginated: false
+	}
+
+	var actual = new SmartAutocomplete.Configuration();
+
+	assert.ok(actual, "Passed : Configuration created succesfully with defaults");
+
+	assertValue._actual = actual;
+	assertValue('data');
+	assertValue('url');
+	assertValue('maxNoOfContent');
+	assertValue('paginated');
+	assert.ok(typeof actual.get("paginationQuery") 		=== 'object', 	"Passed : paginationQuery of type object");
+	assert.ok(typeof actual.get("getPaginationQuery") 	=== 'function', "Passed : getPaginationQuery of type function");
+	assert.ok(typeof actual.get("listLocation") 		=== 'function', "Passed : listLocation of type function");
+	assert.ok(typeof actual.get("getValue") 			=== 'function', "Passed : getValue of type function");
+	
+	assert.expect(9);
 });
 
 QUnit.test("Test Defualt Configuration", function (assert) {
