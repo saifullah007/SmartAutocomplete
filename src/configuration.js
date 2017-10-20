@@ -6,9 +6,17 @@ var SmartAutocomplete = (function (scope) {
             url: 'required',
             maxNoOfContent: 10,
             paginated: false,
-            paginationQuery: {},
-            getPaginationQuery: function(prevPaginationQuery){
-                return prevPaginationQuery;
+            pagination: {
+                query: {
+                    offset: 0,
+                    length: 10
+                },
+                next: function(currentPaginationQuery){
+                    return currentPaginationQuery;
+                },
+                prev: function(currentPaginationQuery){
+                    return currentPaginationQuery;
+                }
             },
             listLocation: function(data){
                 return data;
@@ -65,18 +73,10 @@ var SmartAutocomplete = (function (scope) {
 				return mergedObject;
             }
         };
-
-        mergePaginaionQueryInOptions(options);
-
-        function mergePaginaionQueryInOptions(options){
-            if(!options) return;
-            if(!options.paginationQuery) return;
-
-            for (var key in options.paginationQuery) {
-                defaults.paginationQuery[key] = options.paginationQuery[key];
-            }
-        }
         
+
+        updatePaginationFunction();
+
         function normalizeConfigurationAfterMerge() {
 
             if (defaults.url !== 'required' && typeof defaults.url !== 'function') {
@@ -101,7 +101,24 @@ var SmartAutocomplete = (function (scope) {
                 };
             }
         }
-        
+
+    // TODO: Need to find out how to update Configuration.currentPaginationQuery.
+    // TODO: Whoever calls this method {getPaginationQuery} must update the {Configuration.currentPaginationQuery}
+    // depending on success and failure of its operations.
+    
+    function updatePaginationFunction(){
+        Configuration.currentPaginationQuery = defaults.pagination.query;
+
+        var orignalNextPaginationQuery = defaults.pagination.next;
+        defaults.pagination.next = function(){
+            return orignalNextPaginationQuery(JSON.parse(JSON.stringify(Configuration.currentPaginationQuery)));
+        }
+
+        var orignalPrevPaginationQuery = defaults.pagination.prev;
+        defaults.pagination.prev = function(){
+            return orignalPrevPaginationQuery(JSON.parse(JSON.stringify(Configuration.currentPaginationQuery)));
+        }
+    }   
     };
 
     return scope;
