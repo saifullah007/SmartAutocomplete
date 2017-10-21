@@ -81,8 +81,8 @@ QUnit.test("Test Configuration for undefined/no options",function(assert) {
 	assertValue('url');
 	assertValue('maxNoOfContent');
 	assertValue('paginated');
-	assert.ok(typeof actual.get("listLocation") 		=== 'function', "Passed : listLocation of type function");
-	assert.ok(typeof actual.get("getValue") 			=== 'function', "Passed : getValue of type function");
+	assert.ok(typeof actual.get("listLocation") === 'function', "Passed : listLocation of type function");
+	assert.ok(typeof actual.get("getValue") 	=== 'function', "Passed : getValue of type function");
 
 	assert.expect(7);
 });
@@ -104,8 +104,8 @@ QUnit.test("Test Defualt Configuration", function (assert) {
 	assertValue('url');
 	assertValue('maxNoOfContent');
 	assertValue('paginated');
-	assert.ok(typeof actual.get("listLocation") 		=== 'function', "Passed : listLocation of type function");
-	assert.ok(typeof actual.get("getValue") 			=== 'function', "Passed : getValue of type function");
+	assert.ok(typeof actual.get("listLocation") === 'function', "Passed : listLocation of type function");
+	assert.ok(typeof actual.get("getValue") 	=== 'function', "Passed : getValue of type function");
 	assert.expect(6);
 });
 
