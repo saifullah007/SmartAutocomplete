@@ -188,8 +188,8 @@ QUnit.test("pagination Configuration Test", function(assert) {
 	var options = {
 		pagination:{
 			query: {
-				offset: 0,
-				length: 10
+				offset: 1,
+				length: 20
 			},
 			next: function (currentPaginationQuery) {
 				return currentPaginationQuery;
@@ -231,9 +231,9 @@ QUnit.test("pagination Configuration Test", function(assert) {
 
 	actual = new SmartAutocomplete.Configuration(options);
 
-	assert.ok((options.pagination.query.offset+10) === actual.get('pagination').next().offset);
+	assert.ok((options.pagination.query.offset+options.pagination.query.length) === actual.get('pagination').next().offset);
 	assert.ok(options.pagination.query.length === actual.get('pagination').next().length);
-	assert.ok((options.pagination.query.offset-10) === actual.get('pagination').prev().offset);
+	assert.ok((options.pagination.query.offset-options.pagination.query.length) === actual.get('pagination').prev().offset);
 	assert.ok(options.pagination.query.length === actual.get('pagination').prev().length);
 
 	// Checking if original pagination query is not modified
