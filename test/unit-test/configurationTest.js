@@ -69,7 +69,9 @@ QUnit.test("Test Configuration for undefined/no options",function(assert) {
 		data: 'required',
 		url: 'required',
 		maxNoOfContent: 10,
-		paginated: false
+		paginated: false,
+		cache: false,
+		cacheTime: 1000,
 	}
 
 	var actual = new SmartAutocomplete.Configuration();
@@ -81,10 +83,12 @@ QUnit.test("Test Configuration for undefined/no options",function(assert) {
 	assertValue('url');
 	assertValue('maxNoOfContent');
 	assertValue('paginated');
+	assertValue('cache');
+	assertValue('cacheTime');
 	assert.ok(typeof actual.get("listLocation") === 'function', "Passed : listLocation of type function");
 	assert.ok(typeof actual.get("getValue") 	=== 'function', "Passed : getValue of type function");
 
-	assert.expect(7);
+	// assert.expect(7);
 });
 
 QUnit.test("Test Defualt Configuration", function (assert) {
@@ -93,7 +97,9 @@ QUnit.test("Test Defualt Configuration", function (assert) {
 		data: 'required',
 		url: 'required',
 		maxNoOfContent: 10,
-		paginated: false
+		paginated: false,
+		cache: false,
+		cacheTime: 1000,
 	}
 
 	var actual = new SmartAutocomplete.Configuration({});
@@ -104,9 +110,11 @@ QUnit.test("Test Defualt Configuration", function (assert) {
 	assertValue('url');
 	assertValue('maxNoOfContent');
 	assertValue('paginated');
+	assertValue('cache');
+	assertValue('cacheTime');
 	assert.ok(typeof actual.get("listLocation") === 'function', "Passed : listLocation of type function");
 	assert.ok(typeof actual.get("getValue") 	=== 'function', "Passed : getValue of type function");
-	assert.expect(6);
+	// assert.expect(6);
 });
 
 QUnit.test("Basic Configuration Test", function (assert) {
@@ -132,7 +140,9 @@ QUnit.test("Basic Configuration Test", function (assert) {
 		},
 		getPaginationQuery: function(prevPaginationQuery){
 			return prevPaginationQuery;
-		}
+		},
+		cache:true,
+		cacheTime:2000
 	};
 	var actual = new SmartAutocomplete.Configuration(options);
 
@@ -145,6 +155,8 @@ QUnit.test("Basic Configuration Test", function (assert) {
 	assertValue('listLocation');
 	assertValue('maxNoOfContent');
 	assertValue('paginated');
+	assertValue('cache');
+	assertValue('cacheTime')
 
 });
 

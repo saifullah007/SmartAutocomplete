@@ -18,6 +18,8 @@ var SmartAutocomplete = (function (scope) {
                     return currentPaginationQuery;
                 }
             },
+            cache:false,
+            cacheTime:1000,
             listLocation: function(data){
                 return data;
             },
