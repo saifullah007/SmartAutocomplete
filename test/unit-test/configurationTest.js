@@ -56,12 +56,7 @@ function assertValue (value, objectOne, objectTwo) {
 	}
 }
 
-/*QUnit.module("Configuration Test", {
-	beforeEach: function(assert) {
-		console.log("\n");
-		console.log("############### Testing Module Configuration ###############")
-	}
-});*/
+QUnit.module("Configuration Test");
 
 QUnit.test("Test Configuration for undefined/no options",function(assert) {
 	assertValue._assertMethod = assert;
