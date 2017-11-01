@@ -18,7 +18,7 @@ module.exports = function (grunt) {
             },
 
             dist: {
-                src: ['src/configuration.js','src/dataBuilder.js'],
+                src: ['src/configuration.js','src/dataBuilder.js','src/template.js'],
                 dest: 'dist/smart-autocomplete.js'
             }
         },
