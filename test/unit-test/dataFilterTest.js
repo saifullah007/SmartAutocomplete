@@ -120,6 +120,6 @@ QUnit.test('Advanced DataFilter Test',function (assert) {
 
     var expectedArray = ['saif', 'sajjad' , 'bikash' , 'kaushik'];
     
-    assert.ok(compareBasicArrays(expectedArray,basicDataFilter.getDataList(option.data)),'Passed : Basic datafilteration')
+    assert.ok(compareBasicArrays(expectedArray,basicDataFilter.getDataList(option.data)),'Passed : Advanced datafilteration')
 
 });
