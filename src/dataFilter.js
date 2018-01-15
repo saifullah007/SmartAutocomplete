@@ -13,7 +13,7 @@ var SmartAutocomplete = (function (scope) {
             }
             return [];
         }
-    }
+    };
 
     return scope;
 })(SmartAutocomplete || {});
