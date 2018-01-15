@@ -1,19 +1,3 @@
-function compareBasicArrays(array1,array2) {
-    var i = 0;
-    if(!(array1 && array1 instanceof Array && array2 && array2 instanceof Array)){
-        return false;
-    }
-
-    if (array1.length != array2.length) {
-        return false;
-    }
-    for (var i = 0; i < array1.length; i++) {
-        if(array1[i]!==array2[i]) return false;
-    }
-
-    return true;
-}
-
 QUnit.module("DataFilter Test");
 
 QUnit.test('Default DataFilter Test',function(assert){
@@ -120,6 +104,43 @@ QUnit.test('Advanced DataFilter Test',function (assert) {
 
     var expectedArray = ['saif', 'sajjad' , 'bikash' , 'kaushik'];
     
-    assert.ok(compareBasicArrays(expectedArray,basicDataFilter.getDataList(option.data)),'Passed : Advanced datafilteration')
+    assert.ok(compareBasicArrays(expectedArray,basicDataFilter.getDataList(option.data)),'Passed : Advanced data filteration')
 
+});
+
+QUnit.test("Test Element list",function (assert) {
+    var option = {
+        data:{
+            id:5,
+            dataList:[
+                {
+                    name:"saif",
+                    age:24
+                },
+                {
+                    name:"sajjad",
+                    age:24
+                },
+                {
+                    name:"bikash",
+                    age:24
+                },
+                {
+                    name:"kaushik",
+                    age:24
+                }
+            ]
+        },
+        getValue:function(element){
+            return element.name;
+        },
+        listLocation:function(data){
+            return data.dataList
+        }
+    };
+
+    var expectedElementList = option.data.dataList;
+
+    var basicDataFilter = new SmartAutocomplete.DataFilter(new SmartAutocomplete.Configuration(option));
+    assert.ok(compareObjectsArrays(expectedElementList,basicDataFilter.getElementList(option.data)),"Passed : Element List");
 });

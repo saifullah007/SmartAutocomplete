@@ -12,6 +12,11 @@ var SmartAutocomplete = (function (scope) {
                 return list;
             }
             return [];
+        };
+
+        this.getElementList = function (data) {
+            var list = configuration.get('listLocation')(data);
+            return list || [];
         }
     };
 
