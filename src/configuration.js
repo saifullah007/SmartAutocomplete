@@ -113,13 +113,15 @@ var SmartAutocomplete = (function (scope) {
 
         var orignalNextPaginationQuery = defaults.pagination.next;
         defaults.pagination.next = function(){
+            //Stringify and parsing makes a clone of currentPaginationQuery
             return orignalNextPaginationQuery(JSON.parse(JSON.stringify(Configuration.currentPaginationQuery)));
-        }
+        };
 
         var orignalPrevPaginationQuery = defaults.pagination.prev;
         defaults.pagination.prev = function(){
+            //Stringify and parsing makes a clone of currentPaginationQuery
             return orignalPrevPaginationQuery(JSON.parse(JSON.stringify(Configuration.currentPaginationQuery)));
-        }
+        };
     }   
     };
 
