@@ -36,7 +36,7 @@ QUnit.test('Basic DataFilter Test',function (assert) {
 
     var expectedArray = ['saif', 'sajjad' , 'bikash' , 'kaushik'];
     
-    assert.ok(compareBasicArrays(expectedArray,basicDataFilter.getDataList(option.data)),'Passed : Basic datafilteration')
+    assert.ok(compareBasicArrays(expectedArray,basicDataFilter.getDataList(option.data)),'Passed : Basic data filtration');
 
     var option2 = {
         data:{
@@ -64,7 +64,7 @@ QUnit.test('Basic DataFilter Test',function (assert) {
         listLocation:'dataList'
     };
 
-    var basicDataFilter = new SmartAutocomplete.DataFilter(new SmartAutocomplete.Configuration(option2));
+    basicDataFilter = new SmartAutocomplete.DataFilter(new SmartAutocomplete.Configuration(option2));
 
     assert.ok(compareBasicArrays(expectedArray,basicDataFilter.getDataList(option2.data)));
 });
@@ -104,7 +104,7 @@ QUnit.test('Advanced DataFilter Test',function (assert) {
 
     var expectedArray = ['saif', 'sajjad' , 'bikash' , 'kaushik'];
     
-    assert.ok(compareBasicArrays(expectedArray,basicDataFilter.getDataList(option.data)),'Passed : Advanced data filteration')
+    assert.ok(compareBasicArrays(expectedArray,basicDataFilter.getDataList(option.data)),'Passed : Advanced data filtration')
 
 });
 
